@@ -1,12 +1,12 @@
 # NestJS with TypeORM Proof of Concept
 
-# Prerequisites
+## Prerequisites
 
 - NodeJS 14+
 - MariaDB running on port 3306
 - Modify the /apps/api/src/appp/app.module.ts file with your database connection settings such as username and password.
 
-# Description
+## Description
 
 This application is a NestJS api service, which explains how to use NestJS with TypeORM using a SQL server for a database.
 
