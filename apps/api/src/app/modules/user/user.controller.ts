@@ -1,14 +1,15 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { DeleteResult } from 'typeorm';
 
 import { UserDto } from './user.dto';
 import { User } from './user.entity';
-import { UsersService } from './users.service';
+import { UserService } from './user.service';
 
-@ApiTags('Users')
-@Controller('users')
-export class UsersController {
-  constructor(private userService: UsersService) {}
+@ApiTags('User')
+@Controller('user')
+export class UserController {
+  constructor(private userService: UserService) {}
 
   @Get()
   @ApiOkResponse({ type: [User] })
@@ -23,7 +24,7 @@ export class UsersController {
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: number): Promise<void> {
+  async delete(@Param('id') id: number): Promise<DeleteResult> {
     return await this.userService.remove(id);
   }
 }

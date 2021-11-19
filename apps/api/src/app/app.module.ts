@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { User } from './modules/users/user.entity';
-import { UsersModule } from './modules/users/users.module';
+import { Application } from './modules/application/application.entity';
+import { ApplicationModule } from './modules/application/application.module';
+import { User } from './modules/user/user.entity';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
@@ -13,10 +15,11 @@ import { UsersModule } from './modules/users/users.module';
       username: 'root',
       password: 'thepassword',
       database: 'nestjs',
-      entities: [User],
+      entities: [User, Application],
       synchronize: true,
     }),
-    UsersModule,
+    UserModule,
+    ApplicationModule,
   ],
   controllers: [],
   providers: [],
