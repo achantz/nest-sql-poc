@@ -9,6 +9,6 @@ import { ApplicationService } from './application.service';
   imports: [TypeOrmModule.forFeature([Application])],
   providers: [ApplicationService],
   controllers: [ApplicationController],
-  exports: [],
+  exports: [ApplicationService],
 })
 export class ApplicationModule {}

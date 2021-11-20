@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { userInfo } from 'os';
 import { DeleteResult, Repository } from 'typeorm';
 
 import { UserDto } from './user.dto';
@@ -12,8 +13,8 @@ export class UserService {
   async findAll(): Promise<User[]> {
     //* use this to embed related entities into returned collection/object
     //* GraphQL will make this obscolete
-    //return await this.repo.find({ relations: ['applications'] });
-    return await this.repo.find();
+    return await this.repo.find({ relations: ['applications'] });
+    //return await this.repo.find();
   }
 
   async findOne(id: number): Promise<User> {

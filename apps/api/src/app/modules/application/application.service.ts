@@ -31,4 +31,10 @@ export class ApplicationService {
     await this.repo.findOneOrFail(id);
     return this.repo.delete(id);
   }
+
+  async findByUserId(userId: number): Promise<Application[]> {
+    return await this.repo.find({
+      where: { user: userId },
+    });
+  }
 }
