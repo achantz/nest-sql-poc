@@ -8,6 +8,10 @@ type Application {
   isActive: Boolean!
   isArchived: Boolean!
   lastChangedDateTime: DateTime!
+  user: User!
+}
+
+input ApplicationDto {
   user: Int!
 }
 
@@ -16,18 +20,34 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Mutation {
+  addApplication(application: ApplicationDto!): Application!
+  addUser(user: UserDto!): User!
+  deleteApplication(id: Int!): Application!
+  deleteUser(id: Int!): User!
+  updateApplication(application: ApplicationDto!, id: Int!): Application!
+  updateUser(id: Int!, user: UserDto!): User!
+}
+
 type Query {
+  application(id: Int!): Application!
+  applications: [Application!]!
   user(id: Int!): User!
   users: [User!]!
 }
 
 type User {
-  applications: [Application!]!
+  applications: [Application!]
   createdDateTime: DateTime!
   firstName: String!
   id: Int!
   isActive: Boolean!
   isArchived: Boolean!
   lastChangedDateTime: DateTime!
+  lastName: String!
+}
+
+input UserDto {
+  firstName: String!
   lastName: String!
 }

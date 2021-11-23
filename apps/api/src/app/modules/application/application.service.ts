@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 import { ApplicationDto } from './application.dto';
 import { Application } from './application.entity';
@@ -16,8 +16,7 @@ export class ApplicationService {
   }
 
   async findOne(id: number): Promise<Application> {
-    await this.repo.findOneOrFail(id);
-    return this.repo.findOne(id);
+    return await this.repo.findOneOrFail(id);
   }
 
   async insert(input: ApplicationDto): Promise<Application> {
@@ -27,9 +26,18 @@ export class ApplicationService {
     return await this.repo.save(application);
   }
 
-  async remove(id: number): Promise<DeleteResult> {
+  async update(id: number, input: ApplicationDto): Promise<Application> {
     await this.repo.findOneOrFail(id);
-    return this.repo.delete(id);
+    await this.repo.update({ id: id }, input);
+
+    const value = this.repo.findOneOrFail(id);
+
+    return value;
+  }
+
+  async remove(id: number): Promise<Application> {
+    const application = await this.repo.findOneOrFail(id);
+    return await this.repo.remove(application);
   }
 
   async findByUserId(userId: number): Promise<Application[]> {

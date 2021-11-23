@@ -1,6 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { DeleteResult } from 'typeorm';
 
 import { ApplicationDto } from './application.dto';
 import { Application } from './application.entity';
@@ -23,8 +22,17 @@ export class ApplicationController {
     return await this.applicationService.insert(application);
   }
 
+  @Patch()
+  @ApiCreatedResponse({ type: Application })
+  async update(
+    @Body() id: number,
+    @Body() application: ApplicationDto
+  ): Promise<Application> {
+    return await this.applicationService.update(id, application);
+  }
+
   @Delete(':id')
-  async delete(@Param() id: number): Promise<DeleteResult> {
+  async delete(@Param() id: number): Promise<Application> {
     return await this.applicationService.remove(id);
   }
 }

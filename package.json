@@ -5,7 +5,9 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "db:start": "brew services start mariadb",
+    "db:stop": "brew services stop mariadb"
   },
   "private": true,
   "dependencies": {

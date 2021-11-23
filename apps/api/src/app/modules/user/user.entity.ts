@@ -5,7 +5,7 @@ import { Column, Entity, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../base.entity';
 import { Application } from '../application/application.entity';
 
-@Entity({ name: 'User' }) //* TypeORM attribute
+@Entity({ name: 'user' }) //* TypeORM attribute
 @ObjectType() //* GraphQL attribute
 export class User extends BaseEntity {
   @Column({ type: 'varchar', length: 100 })
@@ -18,8 +18,10 @@ export class User extends BaseEntity {
   @ApiProperty()
   lastName: string;
 
-  @OneToMany(() => Application, (application) => application.user)
-  @Field(() => [Application])
+  @OneToMany(() => Application, (application) => application.user, {
+    nullable: true,
+  })
+  @Field(() => [Application], { nullable: true })
   @ApiProperty({ isArray: true })
-  applications?: Application[];
+  applications?: Application[] = null;
 }
