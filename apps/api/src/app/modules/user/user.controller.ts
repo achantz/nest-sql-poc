@@ -24,7 +24,7 @@ export class UserController {
 
   @Patch()
   @ApiOkResponse({ type: User })
-  async update(@Body() id: number, @Body() input: UserDto): Promise<User> {
+  async update(@Param('id') id: number, @Body() input: UserDto): Promise<User> {
     return await this.userService.update(id, input);
   }
 

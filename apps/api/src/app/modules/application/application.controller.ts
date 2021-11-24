@@ -25,14 +25,14 @@ export class ApplicationController {
   @Patch()
   @ApiCreatedResponse({ type: Application })
   async update(
-    @Body() id: number,
+    @Param('id') id: number,
     @Body() application: ApplicationDto
   ): Promise<Application> {
     return await this.applicationService.update(id, application);
   }
 
   @Delete(':id')
-  async delete(@Param() id: number): Promise<Application> {
+  async delete(@Param('id') id: number): Promise<Application> {
     return await this.applicationService.remove(id);
   }
 }

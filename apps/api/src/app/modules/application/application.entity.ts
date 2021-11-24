@@ -1,6 +1,6 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { ApiProperty } from '@nestjs/swagger';
-import { Entity, Index, ManyToOne, RelationId } from 'typeorm';
+import { Column, Entity, Index, ManyToOne, RelationId } from 'typeorm';
 
 import { BaseEntity } from '../../base.entity';
 import { User } from '../user/user.entity';
@@ -15,6 +15,7 @@ export class Application extends BaseEntity {
   @ApiProperty()
   user: number;
 
+  @Column({ type: 'varchar', length: 100 })
   @Field(() => String)
   @ApiProperty()
   name?: string;
