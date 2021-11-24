@@ -6,13 +6,6 @@ import { getConnectionOptions } from 'typeorm';
 import { ApplicationModule } from './modules/application/application.module';
 import { UserModule } from './modules/user/user.module';
 
-//import { Application } from './modules/application/application.entity';
-//import { ApplicationService } from './modules/application/application.service';
-//import { User } from './modules/user/user.entity';
-//import { UserService } from './modules/user/user.service';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-//const ormConfig: TypeOrmModuleOptions = require('./../../../../ormconfig.json');
 @Module({
   imports: [
     GraphQLModule.forRoot({
@@ -20,10 +13,6 @@ import { UserModule } from './modules/user/user.module';
       sortSchema: true,
       playground: true,
     }),
-    // TypeOrmModule.forRoot({
-    //   ...ormConfig,
-    //   entities: [User, Application],
-    // }),
     TypeOrmModule.forRootAsync({
       useFactory: async () =>
         Object.assign(await getConnectionOptions(), {
