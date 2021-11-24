@@ -8,10 +8,12 @@ type Application {
   isActive: Boolean!
   isArchived: Boolean!
   lastChangedDateTime: DateTime!
+  name: String!
   user: User!
 }
 
 input ApplicationDto {
+  name: String!
   user: Int!
 }
 

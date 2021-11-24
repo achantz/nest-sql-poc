@@ -6,4 +6,8 @@ export class ApplicationDto {
   @Field(() => Int)
   @ApiProperty()
   user: number;
+
+  @Field(() => String)
+  @ApiProperty()
+  name?: string;
 }

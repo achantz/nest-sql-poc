@@ -15,6 +15,10 @@ export class Application extends BaseEntity {
   @ApiProperty()
   user: number;
 
+  @Field(() => String)
+  @ApiProperty()
+  name?: string;
+
   @RelationId((application: Application) => application.user) //* this exposes the userid property which we need to resolve the user with
   public userId: number;
 }
