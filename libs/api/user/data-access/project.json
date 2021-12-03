@@ -1,0 +1,26 @@
+{
+  "root": "libs/api/user/data-access",
+  "sourceRoot": "libs/api/user/data-access/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/api/user/data-access",
+        "tsConfig": "libs/api/user/data-access/tsconfig.lib.json",
+        "packageJson": "libs/api/user/data-access/package.json",
+        "main": "libs/api/user/data-access/src/index.ts",
+        "assets": ["libs/api/user/data-access/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/user/data-access/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

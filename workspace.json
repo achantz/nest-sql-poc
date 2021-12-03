@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
-    "api": "apps/api"
+    "api": "apps/api",
+    "api-core-feature": "libs/api/core/feature",
+    "api-user-data-access": "libs/api/user/data-access"
   }
 }
